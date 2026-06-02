@@ -4,8 +4,11 @@
     <button (click)="addAppointment()">Add Appointment</button>
 </div>
 
+
+
 <ul>
         <li *ngFor="let appointment of appointments">
             {{ appointment.title }} - {{ appointment.date | date:'shortDate' }}
+            <button (click)="deleteAppointment(appointment.id)">Delete</button>
         </li>
 </ul>

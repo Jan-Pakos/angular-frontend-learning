@@ -27,4 +27,15 @@ export class AppointmentList {
       this.newAppointmentDate = new Date();
     }
   }
+
+  deleteAppointment(id : number) {
+    const index = this.appointments.findIndex(appointment => appointment.id === id);
+    if (index !== -1) {
+      this.appointments.splice(index, 1);
+    }
+  }
+
+  localstorage() {
+    localStorage.setItem('appointments', JSON.stringify(this.appointments));
+  }
 }
