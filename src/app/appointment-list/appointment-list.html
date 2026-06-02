@@ -1,14 +1,57 @@
 <div>
-    <input [(ngModel)]="newAppointmentTitle" placeholder="AppointmentTitle" type="text" />
-    <input [(ngModel)]="newAppointmentDate" placeholder="Date" type="date"  />
-    <button (click)="addAppointment()">Add Appointment</button>
-</div>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0">New Appointment</h5>
+    </div>
+    <div class="card-body">
+      <div class="row g-2 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label">Title</label>
+          <input
+            [(ngModel)]="newAppointmentTitle"
+            placeholder="Appointment title"
+            type="text"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Date</label>
+          <input
+            [(ngModel)]="newAppointmentDate"
+            type="date"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-3">
+          <button (click)="addAppointment()" class="btn btn-primary w-100">
+            Add Appointment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-
-<ul>
-        <li *ngFor="let appointment of appointments">
-            {{ appointment.title }} - {{ appointment.date | date:'shortDate' }}
-            <button (click)="deleteAppointment(appointment.id)">Delete</button>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Appointments</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      @for (appointment of appointments; track appointment.id) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <strong>{{ appointment.title }}</strong>
+            <span class="text-muted ms-2">{{ appointment.date | date:'shortDate' }}</span>
+          </span>
+          <button
+            (click)="deleteAppointment(appointment.id)"
+            class="btn btn-outline-danger btn-sm"
+          >
+            Delete
+          </button>
         </li>
-</ul>
+      } @empty {
+        <li class="list-group-item text-muted text-center">No appointments yet.</li>
+      }
+    </ul>
+  </div>
+</div>
